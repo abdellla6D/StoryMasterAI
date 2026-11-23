@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101522">
+<title>StoryMaster AI — نسخة البداية</title>
+<style>
+:root{--bg:#0c111c;--panel:#171f30;--line:#34415b;--txt:#f5f6fa;--muted:#aab5c9;--pink:#ff4b83;--green:#61d5a5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font-family:system-ui,Arial,sans-serif}
+header{padding:20px;background:#121a29;border-bottom:1px solid var(--line)}main{max-width:900px;margin:20px auto;padding:0 14px}
+h1{font-size:22px;margin:0 0 5px}h2{font-size:17px;margin:0 0 12px}.muted,.hint{color:var(--muted);font-size:13px;line-height:1.7}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:16px;margin-bottom:14px}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>div{flex:1;min-width:145px}
+label{display:block;color:var(--muted);font-size:13px;margin:10px 0 5px}
+input,select,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#0e1522;color:var(--txt);font:inherit}
+textarea{min-height:160px;line-height:1.8}
+button{border:0;border-radius:10px;padding:11px 14px;background:var(--pink);color:white;font-weight:700;margin:5px 3px;cursor:pointer}
+.secondary{background:#222d43;border:1px solid var(--line);color:var(--txt)}
+.scene{padding:12px;border:1px solid var(--line);border-radius:11px;margin:9px 0;line-height:1.8}
+.preview{max-width:300px;aspect-ratio:9/16;margin:12px auto;background:linear-gradient(145deg,#282454,#101a35 65%,#16434a);border:1px solid #59617c;border-radius:18px;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;white-space:pre-wrap}
+.preview strong{font-size:22px;color:#d3ccff}.preview p{font-size:20px;line-height:1.8}
+#status{white-space:pre-wrap;color:var(--green);font-size:13px;line-height:1.7}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:20px}
+</style>
+</head>
+<body>
+<header><h1>📖 StoryMaster AI</h1><div class="muted">نسخة بداية مستقلة — تعمل مباشرة دون خادم أو مفاتيح API</div></header>
+<main>
+<section class="card">
+<h2>إنشاء قصة</h2>
+<div class="row">
+<div><label>نوع القصة</label><select id="genre"><option value="mystery">غموض</option><option value="drama">دراما</option><option value="fantasy">خيال</option><option value="adventure">مغامرة</option></select></div>
+<div><label>عدد المشاهد</label><select id="count"><option>3</option><option selected>5</option></select></div>
+</div>
+<label>فكرة أو عنوان (اختياري)</label><input id="idea" placeholder="مثلاً: رسالة تصل من المستقبل">
+<div>
+<button id="make">إنشاء قصة تجريبية</button><button class="secondary" id="split">تقسيم النص إلى مشاهد</button>
+<button class="secondary" id="save">حفظ المسودة</button><button class="secondary" id="load">استرجاع المسودة</button>
+</div>
+<label>عنوان القصة</label><input id="title" placeholder="عنوان القصة">
+<label>نص القصة</label><textarea id="story" placeholder="ستظهر القصة هنا..."></textarea>
+<button class="secondary" id="copy">نسخ القصة</button><button class="secondary" id="download">تنزيل القصة TXT</button>
+</section>
+<section class="card">
+<h2>المشاهد</h2><div id="scenes" class="muted">أنشئ قصة أولاً.</div>
+</section>
+<section class="card">
+<h2>معاينة عمودية 9:16</h2>
+<div class="preview"><strong id="pvtitle">StoryMaster AI</strong><p id="pvtext">أنشئ قصة لعرض المشهد الأول.</p><small id="pvcount"></small></div>
+<button class="secondary" id="prev">السابق</button><button class="secondary" id="next">التالي</button>
+<button class="secondary" id="speak">قراءة صوتية</button><button class="secondary" id="stop">إيقاف الصوت</button>
+</section>
+<section class="card"><h2>حالة التطبيق</h2><div id="status">الواجهة جاهزة. هذه النسخة لا تحتاج إلى إعداد خادم.</div>
+<p class="hint">هذه نسخة اختبار للواجهة فقط. ربط Gemini والنشر الخارجي وإنتاج الفيديو الكامل نضيفها بعد التأكد أن الصفحة تعمل على الاستضافة.</p></section>
+</main>
+<footer>StoryMaster AI · نسخة اختبار مستقلة</footer>
+<script>
+const $=id=>document.getElementById(id);
+const samples={
+mystery:{title:"الباب الذي لا يظهر",parts:["عثر سامر على مفتاح قديم أمام شقته، ومعه ورقة كتب عليها: لا تبحث عن الباب.","في المساء سمع طرقاً خفيفاً من الجدار خلف المكتبة. لم يكن هناك أي باب في ذلك المكان.","أزاح الكتب فوجد رسماً صغيراً للمفتاح نفسه، وتحته تاريخ يعود إلى ثلاثين سنة.","جرّب المفتاح في شق صغير بين الحائطين، فانفتح ممر مضاء بمصابيح قديمة.","في نهاية الممر وجد رسالة بخط يده، لكنها مؤرخة بيوم لم يأتِ بعد."]},
+drama:{title:"الرسالة المؤجلة",parts:["وجدت مريم رسالة قديمة بين صفحات كتاب ورثته عن جدتها.","كانت الرسالة اعتذاراً عن غياب طويل، لكنها لم تحمل اسماً.","بحثت في الصور القديمة حتى عثرت على وجه تعرفه من حكايات العائلة.","في آخر الرسالة عنوان بيت قريب لم تزره من قبل.","ذهبت مريم إلى العنوان، وهناك فهمت لماذا احتفظت جدتها بالرسالة كل هذه السنوات."]},
+fantasy:{title:"مفتاح النجوم",parts:["في ليلة صافية، سقط ضوء أزرق قرب نافذة نور.","وجدت حجراً صغيراً يرسم في الهواء خريطة للسماء.","قادتها الخريطة إلى برج مهجور وسط المدينة.","في أعلى البرج وجدت باباً لا يفتح إلا عندما تصطف ثلاثة نجوم.","خلف الباب كانت مدينة كاملة تنتظر عودة آخر حارس لها."]},
+adventure:{title:"الخريطة الأخيرة",parts:["وصلت إلى ليلى خريطة قديمة بلا اسم ولا توقيع.","قادها أول دليل إلى منارة مهجورة قرب البحر.","وجدت في الداخل صندوقاً صغيراً وصورة لوالدها.","احتوى الصندوق على دفتر يشرح سر الرحلة التي اختفت أخبارها.","قبل أن تغادر، سمعت صوتاً يقول: كنت أعلم أنك ستصلين."]}};
+let scenes=[],idx=0;
+function show(){ $('scenes').innerHTML=scenes.length?scenes.map((s,i)=>`<div class="scene"><b>المشهد ${i+1}</b><br>${s}</div>`).join(""):"لا توجد مشاهد بعد.";update()}
+function update(){ $('pvtitle').textContent=$('title').value||"StoryMaster AI";$('pvtext').textContent=scenes[idx]||"أنشئ قصة لعرض المشهد الأول.";$('pvcount').textContent=scenes.length?`${idx+1} / ${scenes.length}`:""}
+$('make').onclick=()=>{const t=samples[$('genre').value],n=Number($('count').value);scenes=t.parts.slice(0,n);$('title').value=$('idea').value.trim()||t.title;$('story').value=scenes.join("\n\n");idx=0;show();$('status').textContent="تم إنشاء قصة تجريبية بنجاح."};
+$('split').onclick=()=>{scenes=$('story').value.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);idx=0;show();$('status').textContent="تم تقسيم النص إلى "+scenes.length+" مشاهد."};
+$('prev').onclick=()=>{if(scenes.length){idx=(idx-1+scenes.length)%scenes.length;update()}};
+$('next').onclick=()=>{if(scenes.length){idx=(idx+1)%scenes.length;update()}};
+$('speak').onclick=()=>{if(!scenes[idx])return;if(!('speechSynthesis'in window)){ $('status').textContent="القراءة الصوتية غير مدعومة في هذا المتصفح.";return}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(scenes[idx]);u.lang="ar-SA";speechSynthesis.speak(u)};
+$('stop').onclick=()=>{if('speechSynthesis'in window)speechSynthesis.cancel()};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('story').value);$('status').textContent="تم نسخ القصة."}catch(e){$('status').textContent="تعذر النسخ؛ حدّد النص وانسخه يدوياً."}};
+$('download').onclick=()=>{const b=new Blob([$('title').value+"\n\n"+$('story').value],{type:"text/plain;charset=utf-8"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="story.txt";a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};
+$('save').onclick=()=>{localStorage.setItem("storymaster-static",JSON.stringify({title:$('title').value,story:$('story').value,scenes}));$('status').textContent="تم حفظ المسودة على هذا المتصفح."};
+$('load').onclick=()=>{try{const p=JSON.parse(localStorage.getItem("storymaster-static")||"null");if(!p)throw 0;$('title').value=p.title||"";$('story').value=p.story||"";scenes=p.scenes||[];idx=0;show();$('status').textContent="تم استرجاع المسودة."}catch(e){$('status').textContent="لا توجد مسودة محفوظة."}};
+</script>
+</body></html>
