@@ -115,7 +115,6 @@ footer{text-align:center;color:#7f8ca5;padding:22px 12px;font-size:11px;border-t
   </section>
 
   <div class="layout">
-    <!-- العمود الأيمن: إنشاء القصة وتحريرها والصوت -->
     <div>
       <section class="card">
         <div class="card-head">
@@ -157,9 +156,9 @@ footer{text-align:center;color:#7f8ca5;padding:22px 12px;font-size:11px;border-t
         <input id="idea" placeholder="مثلاً: رسالة غامضة وصلت بعد 20 سنة إلى عنوان لم يعد موجوداً">
 
         <div class="actions">
-          <button id="generate">✦ إنشاء مسودة قصة كاملة</button>
-          <button class="secondary" id="improveHook">⚡ تحسين جملة البداية</button>
-          <button class="secondary" id="clear">مسح الحقول</button>
+          <button type="button" id="generate">✦ إنشاء مسودة قصة كاملة</button>
+          <button type="button" class="secondary" id="improveHook">⚡ تحسين جملة البداية</button>
+          <button type="button" class="secondary" id="clear">مسح الحقول</button>
         </div>
       </section>
 
@@ -175,10 +174,10 @@ footer{text-align:center;color:#7f8ca5;padding:22px 12px;font-size:11px;border-t
         <textarea id="story" placeholder="ستظهر القصة الكاملة هنا. يمكنك تعديلها بحرية قبل التصدير أو النشر..."></textarea>
 
         <div class="actions">
-          <button class="secondary" id="copy">نسخ القصة</button>
-          <button class="secondary" id="download">تنزيل TXT</button>
-          <button class="secondary" id="save">حفظ المسودة</button>
-          <button class="secondary" id="load">استرجاع</button>
+          <button type="button" class="secondary" id="copy">نسخ القصة</button>
+          <button type="button" class="secondary" id="download">تنزيل TXT</button>
+          <button type="button" class="secondary" id="save">حفظ المسودة</button>
+          <button type="button" class="secondary" id="load">استرجاع</button>
         </div>
       </section>
 
@@ -206,14 +205,13 @@ footer{text-align:center;color:#7f8ca5;padding:22px 12px;font-size:11px;border-t
           </div>
         </div>
         <div class="actions">
-          <button class="alt" id="speak">▶ استمع للقصة</button>
-          <button class="secondary" id="stop">⏹ إيقاف القراءة</button>
+          <button type="button" class="alt" id="speak">▶ استمع للقصة</button>
+          <button type="button" class="secondary" id="stop">⏹ إيقاف القراءة</button>
         </div>
         <p class="hint">ملاحظة: القراءة الصوتية تعمل عبر محرك الصوت في هاتفك/متصفحك للمعاينة، بينما ملف الفيديو المصدّر من المتصفح يكون بصيغة WebM جاهزاً لإضافة صوتك أو موسيقى الخلفية عليه في TikTok أو Reels.</p>
       </section>
     </div>
 
-    <!-- العمود الأيسر: المعاينة والتصدير والربط بتيك توك وفيسبوك -->
     <div>
       <section class="card">
         <div class="card-head">
@@ -256,14 +254,13 @@ footer{text-align:center;color:#7f8ca5;padding:22px 12px;font-size:11px;border-t
         </div>
 
         <div class="actions">
-          <button class="secondary" id="refresh">تحديث المعاينة</button>
-          <button class="alt" id="export">🎬 تصدير فيديو WebM</button>
+          <button type="button" class="secondary" id="refresh">تحديث المعاينة</button>
+          <button type="button" class="alt" id="export">🎬 تصدير فيديو WebM</button>
         </div>
         <div class="progress"><span id="bar"></span></div>
         <div id="status">جاهز. اكتب فكرة قصتك أو اضغط «إنشاء مسودة قصة كاملة».</div>
       </section>
 
-      <!-- قسم الربط بتيك توك وفيسبوك -->
       <section class="card">
         <div class="card-head">
           <h3>🔗 5. الربط والنشر — TikTok & Facebook</h3>
@@ -271,12 +268,11 @@ footer{text-align:center;color:#7f8ca5;padding:22px 12px;font-size:11px;border-t
         </div>
 
         <div class="tabs">
-          <button class="tab active" data-tab="accounts">الحسابات والربط</button>
-          <button class="tab" data-tab="tiktok">إعداد منشور TikTok</button>
-          <button class="tab" data-tab="facebook">إعداد منشور Facebook</button>
+          <button type="button" class="tab active" data-tab="accounts">الحسابات والربط</button>
+          <button type="button" class="tab" data-tab="tiktok">إعداد منشور TikTok</button>
+          <button type="button" class="tab" data-tab="facebook">إعداد منشور Facebook</button>
         </div>
 
-        <!-- تبويب 1: الحسابات والربط -->
         <div class="tab-pane active" id="tab-accounts">
           <div class="social-box">
             <div class="social-head">
@@ -288,8 +284,8 @@ footer{text-align:center;color:#7f8ca5;padding:22px 12px;font-size:11px;border-t
             <label for="ttClientKey">TikTok Client Key / رابط Webhook (اختياري للنشر الآلي)</label>
             <input id="ttClientKey" placeholder="أدخل Client Key أو رابط الخادم الوسيط إن وجد">
             <div class="actions">
-              <button class="tt-btn" id="connectTT">ربط حساب TikTok</button>
-              <button class="secondary" id="openTT">فتح استوديو رفع TikTok ↗</button>
+              <button type="button" class="tt-btn" id="connectTT">ربط حساب TikTok</button>
+              <button type="button" class="secondary" id="openTT">فتح استوديو رفع TikTok ↗</button>
             </div>
           </div>
 
@@ -303,18 +299,17 @@ footer{text-align:center;color:#7f8ca5;padding:22px 12px;font-size:11px;border-t
             <label for="fbToken">Facebook Graph Token / رابط Webhook (اختياري للنشر الآلي)</label>
             <input id="fbToken" type="password" placeholder="أدخل رمز الصفحة أو رابط الخادم الوسيط إن وجد">
             <div class="actions">
-              <button class="fb-btn" id="connectFB">ربط صفحة Facebook</button>
-              <button class="secondary" id="openFB">فتح Facebook Reels / النشر ↗</button>
+              <button type="button" class="fb-btn" id="connectFB">ربط صفحة Facebook</button>
+              <button type="button" class="secondary" id="openFB">فتح Facebook Reels / النشر ↗</button>
             </div>
           </div>
 
           <div class="actions">
-            <button class="ok-btn" id="publishAll">🚀 تنفيذ النشر / إرسال الحزمة للمنصتين</button>
+            <button type="button" class="ok-btn" id="publishAll">🚀 تنفيذ النشر / إرسال الحزمة للمنصتين</button>
           </div>
           <p class="hint">ملاحظة أمنية وتقنية: المتصفح يحفظ بيانات الربط محلياً على جهازك فقط. عند وجود خادم خلفي (Backend OAuth/Webhook) يتم إرسال الفيديو والوصف مباشرة إليه؛ وبدون خادم يتم تجهيز الفيديو ونسخ الوصف وفتح نافذة الرفع الرسمية لـ TikTok وFacebook فوراً.</p>
         </div>
 
-        <!-- تبويب 2: منشور تيك توك -->
         <div class="tab-pane" id="tab-tiktok">
           <label for="ttCaption">وصف فيديو TikTok + الهاشتاغات</label>
           <textarea id="ttCaption" class="small" placeholder="سيتم توليد وصف جذاب وهاشتاغات مناسبة لتيك توك تلقائياً..."></textarea>
@@ -341,12 +336,11 @@ footer{text-align:center;color:#7f8ca5;padding:22px 12px;font-size:11px;border-t
             </div>
           </div>
           <div class="actions">
-            <button class="secondary" id="genSocial">تحديث الوصف من القصة</button>
-            <button class="tt-btn" id="copyTT">نسخ وصف TikTok</button>
+            <button type="button" class="secondary" id="genSocial">تحديث الوصف من القصة</button>
+            <button type="button" class="tt-btn" id="copyTT">نسخ وصف TikTok</button>
           </div>
         </div>
 
-        <!-- تبويب 3: منشور فيسبوك -->
         <div class="tab-pane" id="tab-facebook">
           <label for="fbCaption">منشور Facebook (Reels أو فيديو الصفحة)</label>
           <textarea id="fbCaption" class="small" placeholder="سيتم توليد نص منشور فيسبوك مع سؤال تفاعلي لزيادة التعليقات..."></textarea>
@@ -372,8 +366,8 @@ footer{text-align:center;color:#7f8ca5;padding:22px 12px;font-size:11px;border-t
             </div>
           </div>
           <div class="actions">
-            <button class="secondary" id="genSocial2">تحديث منشور Facebook</button>
-            <button class="fb-btn" id="copyFB">نسخ منشور Facebook</button>
+            <button type="button" class="secondary" id="genSocial2">تحديث منشور Facebook</button>
+            <button type="button" class="fb-btn" id="copyFB">نسخ منشور Facebook</button>
           </div>
         </div>
       </section>
@@ -562,7 +556,9 @@ function saveSocialState() {
     fbToken: $("fbToken").value.trim(),
     fbConnected: $("fbState").dataset.connected === "1"
   };
-  localStorage.setItem("sm-social-pro", JSON.stringify(state));
+  try {
+    localStorage.setItem("sm-social-pro", JSON.stringify(state));
+  } catch (e) {}
   updateSocialUI(state);
 }
 
@@ -593,28 +589,35 @@ function loadSocialState() {
   } catch (e) {}
 }
 
-// التبويبات
+function drawRoundedRect(ctx, x, y, w, h, r) {
+  const rad = Math.min(r, w / 2, h / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + rad, y);
+  ctx.arcTo(x + w, y, x + w, y + h, rad);
+  ctx.arcTo(x + w, y + h, x, y + h, rad);
+  ctx.arcTo(x, y + h, x, y, rad);
+  ctx.arcTo(x, y, x + w, y, rad);
+  ctx.closePath();
+  ctx.fill();
+}
+
 document.querySelectorAll(".tab").forEach(btn => {
   btn.onclick = () => {
     document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
     document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"));
     btn.classList.add("active");
-    $("tab-" + btn.dataset.tab).classList.add("active");
+    const pane = $("tab-" + btn.dataset.tab);
+    if (pane) pane.classList.add("active");
   };
 });
 
-// أحداث القصة
 $("generate").onclick = makeStory;
 $("improveHook").onclick = () => {
   const g = $("genre").value;
-  const hook = samples[g]?.hook;
+  const hook = samples[g]?.hook || "";
   const cur = $("story").value.trim();
-  if (!cur) {
-    $("story").value = hook;
-  } else {
-    $("story").value = hook + "
-" + cur;
-  }
+  $("story").value = cur ? (hook + "
+" + cur) : hook;
   refresh();
   buildSocialCopy();
   setStatus("تمت إضافة جملة افتتاحية قوية (Hook) في بداية القصة.");
@@ -654,6 +657,7 @@ $("copyTT").onclick = async () => {
     setStatus("تم نسخ وصف وهاشتاغات TikTok.");
   } catch (e) {
     $("ttCaption").select();
+    setStatus("حدد وصف TikTok وانسخه يدوياً.");
   }
 };
 
@@ -663,6 +667,7 @@ $("copyFB").onclick = async () => {
     setStatus("تم نسخ منشور Facebook.");
   } catch (e) {
     $("fbCaption").select();
+    setStatus("حدد منشور Facebook وانسخه يدوياً.");
   }
 };
 
@@ -686,23 +691,27 @@ ${$("fbCaption").value}`;
 };
 
 $("save").onclick = () => {
-  localStorage.setItem("sm-story-pro", JSON.stringify({
-    idea: $("idea").value,
-    genre: $("genre").value,
-    duration: $("duration").value,
-    style: $("style").value,
-    title: $("title").value,
-    story: $("story").value,
-    ttCaption: $("ttCaption").value,
-    fbCaption: $("fbCaption").value
-  }));
-  setStatus("تم حفظ المسودة وحزمة النشر على هذا الجهاز.");
+  try {
+    localStorage.setItem("sm-story-pro", JSON.stringify({
+      idea: $("idea").value,
+      genre: $("genre").value,
+      duration: $("duration").value,
+      style: $("style").value,
+      title: $("title").value,
+      story: $("story").value,
+      ttCaption: $("ttCaption").value,
+      fbCaption: $("fbCaption").value
+    }));
+    setStatus("تم حفظ المسودة وحزمة النشر على هذا الجهاز.");
+  } catch (e) {
+    setStatus("تعذر الحفظ المحلي في هذا المتصفح.");
+  }
 };
 
 $("load").onclick = () => {
   try {
     const x = JSON.parse(localStorage.getItem("sm-story-pro"));
-    if (!x) throw 0;
+    if (!x) throw new Error("empty");
     Object.keys(x).forEach(k => { if ($(k)) $(k).value = x[k]; });
     refresh();
     setStatus("تم استرجاع المسودة المحفوظة.");
@@ -711,7 +720,6 @@ $("load").onclick = () => {
   }
 };
 
-// الصوت
 $("speak").onclick = () => {
   const text = $("story").value.trim();
   if (!text) return setStatus("اكتب قصة أولاً.");
@@ -728,7 +736,6 @@ $("stop").onclick = () => {
   setStatus("تم إيقاف القراءة الصوتية.");
 };
 
-// الربط بتيك توك وفيسبوك
 $("connectTT").onclick = () => {
   const user = $("ttUser").value.trim();
   if (!user) return setStatus("أدخل اسم مستخدم TikTok أولاً (مثلاً: @storymaster).");
@@ -806,7 +813,6 @@ ${$("fbCaption").value}`;
   setStatus("تم نسخ أوصاف TikTok وFacebook معاً! استخدم أزرار «فتح استوديو رفع TikTok» و«فتح Facebook Reels» لرفع الفيديو المصدّر مباشرة.");
 };
 
-// تصدير الفيديو
 $("export").onclick = async () => {
   const text = $("story").value.trim();
   const title = $("title").value.trim() || "StoryMaster AI";
@@ -824,24 +830,29 @@ $("export").onclick = async () => {
   const chunks = text.match(/[^.!؟
 ]+[.!؟]?/g)?.map(x => x.trim()).filter(Boolean) || [text];
   const stream = canvas.captureStream(24);
-  let mime = "video/webm";
-  if (MediaRecorder.isTypeSupported("video/webm;codecs=vp9")) mime = "video/webm;codecs=vp9";
 
   let recorder;
+  const mimeCandidates = ["video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm", "video/mp4"];
+  const supportedMime = mimeCandidates.find(m => typeof MediaRecorder.isTypeSupported === "function" && MediaRecorder.isTypeSupported(m));
+
   try {
-    recorder = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 2600000 });
+    recorder = supportedMime
+      ? new MediaRecorder(stream, { mimeType: supportedMime, videoBitsPerSecond: 2600000 })
+      : new MediaRecorder(stream);
   } catch (e) {
     return setStatus("تعذر بدء تصدير الفيديو على هذا الجهاز.");
   }
 
   const data = [];
-  recorder.ondataavailable = e => { if (e.data.size) data.push(e.data); };
+  recorder.ondataavailable = e => { if (e.data && e.data.size) data.push(e.data); };
   recorder.onstop = () => {
-    lastExportedBlob = new Blob(data, { type: "video/webm" });
+    const outType = (supportedMime && supportedMime.includes("mp4")) ? "video/mp4" : "video/webm";
+    const ext = outType.includes("mp4") ? "mp4" : "webm";
+    lastExportedBlob = new Blob(data, { type: outType });
     const url = URL.createObjectURL(lastExportedBlob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = isSquare ? "storymaster-facebook.webm" : "storymaster-tiktok-reels.webm";
+    a.download = isSquare ? `storymaster-facebook.${ext}` : `storymaster-tiktok-reels.${ext}`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 5000);
     stream.getTracks().forEach(t => t.stop());
@@ -852,12 +863,6 @@ $("export").onclick = async () => {
 
   const duration = Math.max(3, Math.min(6, Math.ceil(36 / chunks.length)));
   const theme = $("theme").value;
-
-  function roundRect(x, y, w, h, r) {
-    ctx.beginPath();
-    ctx.roundRect(x, y, w, h, r);
-    ctx.fill();
-  }
 
   function wrapText(c, t, x, y, maxWidth, lineHeight, maxLines) {
     const words = t.split(/\s+/);
@@ -926,9 +931,9 @@ $("export").onclick = async () => {
 
     const barW = W - 160;
     ctx.fillStyle = "#ffffff33";
-    roundRect(80, H - 75, barW, 8, 5);
+    drawRoundedRect(ctx, 80, H - 75, barW, 8, 5);
     ctx.fillStyle = "#3ee0d8";
-    roundRect(80, H - 75, barW * ((i + 1) / chunks.length), 8, 5);
+    drawRoundedRect(ctx, 80, H - 75, barW * ((i + 1) / chunks.length), 8, 5);
   }
 
   let frame = 0, index = 0;
