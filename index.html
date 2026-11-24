@@ -1,967 +1,126 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080d1a">
-<title>StoryMaster AI Pro — TikTok & Facebook Studio</title>
+<title>StoryMasterAI Publisher</title>
 <style>
-:root{
-  --bg:#070b16;--panel:#101829;--panel2:#162238;--line:#263550;--txt:#f4f7ff;--muted:#97a6c2;
-  --pink:#ff3b77;--cyan:#3ee0d8;--gold:#ffca63;--fb:#1877f2;--tt:#00f2ea;--ok:#34d399;--warn:#fbbf24
-}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 12% 0%,#1d254b 0,transparent 38%),radial-gradient(circle at 90% 10%,#0e3346 0,transparent 35%),var(--bg);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
-header{padding:18px 16px;border-bottom:1px solid var(--line);background:#091020e6;position:sticky;top:0;z-index:20;backdrop-filter:blur(14px)}
-.wrap{max-width:1180px;margin:auto;padding:0 12px}
-.brand{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--pink),#7c4dff);display:grid;place-items:center;font-size:22px;box-shadow:0 8px 26px #ff3b773b;flex-shrink:0}
-h1{font-size:20px;margin:0;letter-spacing:.2px}
-.sub{color:var(--muted);font-size:12px;margin-top:3px}
-.top-badges{margin-right:auto;display:flex;gap:6px;flex-wrap:wrap}
-main{max-width:1180px;margin:20px auto 34px;padding:0 12px}
-.hero{padding:14px 4px 18px}
-.eyebrow{color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:.4px}
-.hero h2{font-size:25px;line-height:1.4;margin:7px 0}
-.hero p{color:var(--muted);line-height:1.8;margin:0;max-width:780px;font-size:14px}
-.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.85fr);gap:16px;align-items:start}
-.card{background:linear-gradient(165deg,#152036,#0e1626);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px;box-shadow:0 14px 36px #00000033}
-.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-h3{font-size:16px;margin:0;display:flex;align-items:center;gap:8px}
-.muted,.hint{color:var(--muted);font-size:12px;line-height:1.8}
-label{display:block;color:#c9d3e8;font-size:12px;margin:11px 0 6px;font-weight:600}
-input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:11px;background:#091120;color:var(--txt);font:inherit;outline:none;transition:border-color .18s,box-shadow .18s}
-input:focus,select:focus,textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #3ee0d81f}
-textarea{min-height:240px;line-height:1.95;resize:vertical}
-textarea.small{min-height:95px;line-height:1.7}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-button{border:0;border-radius:11px;padding:11px 14px;background:linear-gradient(135deg,var(--pink),#cf3693);color:#fff;font:inherit;font-size:13px;font-weight:750;cursor:pointer;transition:transform .12s,opacity .15s}
-button:hover{opacity:.95}
-button:active{transform:scale(.99)}
-button.secondary{background:#1e2c45;border:1px solid #364969;color:var(--txt)}
-button.alt{background:#133942;border:1px solid #26606b;color:#b8fffa}
-button.tt-btn{background:linear-gradient(135deg,#111,#1f2937);border:1px solid #00f2ea80;color:#e6fffd}
-button.fb-btn{background:linear-gradient(135deg,#1877f2,#1256b3);color:#fff}
-button.ok-btn{background:linear-gradient(135deg,#10b981,#059669);color:#fff}
-button:disabled{opacity:.45;cursor:not-allowed}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.actions button{flex:1;min-width:125px}
-.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid #335069;background:#112937;color:#9df2e8;border-radius:999px;padding:5px 11px;font-size:11px;font-weight:600}
-.pill.ok{border-color:#1f6f54;background:#0e2f26;color:#7ef5c5}
-.pill.warn{border-color:#6b5320;background:#2b210e;color:#ffd980}
-.tabs{display:flex;gap:8px;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px;flex-wrap:wrap}
-.tab{background:#141f33;border:1px solid var(--line);color:var(--muted);padding:8px 14px;border-radius:10px;font-size:12px;font-weight:700}
-.tab.active{background:linear-gradient(135deg,#253657,#192844);border-color:var(--cyan);color:#fff}
-.tab-pane{display:none}.tab-pane.active{display:block}
-.preview-wrap{display:flex;flex-direction:column;align-items:center}
-.preview{width:min(100%,300px);aspect-ratio:9/16;margin:8px auto 12px;border-radius:24px;border:2px solid #4d5e7c;overflow:hidden;position:relative;background:linear-gradient(155deg,#2e2159,#111936 55%,#0b454e);display:flex;align-items:center;justify-content:center;text-align:center;padding:24px 20px;box-shadow:0 18px 40px #00000055}
-.preview.square{aspect-ratio:1/1;max-width:320px}
-.preview:before,.preview:after{content:"";position:absolute;border-radius:50%;opacity:.35}
-.preview:before{width:210px;height:210px;background:var(--pink);top:-95px;left:-75px}
-.preview:after{width:190px;height:190px;background:var(--cyan);bottom:-85px;right:-65px}
-.pv-ui{position:absolute;left:12px;bottom:56px;z-index:2;display:flex;flex-direction:column;gap:10px;font-size:16px;opacity:.85}
-.pvcontent{position:relative;z-index:1;width:100%}
-.pvbrand{font-size:10px;letter-spacing:1.8px;color:#b9fff8;margin-bottom:16px;font-weight:800}
-.pvtitle{font-size:21px;font-weight:900;line-height:1.55;text-shadow:0 2px 12px #0009}
-.pvtext{font-size:15px;line-height:1.95;margin-top:14px;text-shadow:0 2px 9px #0009}
-.pvfoot{font-size:10px;color:#d6dcef;margin-top:18px}
-#status{padding:11px 13px;border-radius:11px;background:#0b1824;border:1px solid #1e354a;color:#9df2ce;font-size:12px;line-height:1.75;min-height:42px;margin-top:12px}
-.progress{height:6px;background:#24334a;border-radius:10px;overflow:hidden;margin:10px 0}
-.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--cyan));transition:width .2s}
-.social-box{background:#0b1322;border:1px solid var(--line);border-radius:14px;padding:13px;margin-bottom:11px}
-.social-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
-.social-title{font-weight:800;font-size:14px;display:flex;align-items:center;gap:8px}
-.dot{width:9px;height:9px;border-radius:50%;background:#64748b;display:inline-block}
-.dot.on{background:var(--ok);box-shadow:0 0 10px var(--ok)}
-.meta-row{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px}
-.checklist{list-style:none;padding:0;margin:8px 0 0}
-.checklist li{font-size:12px;color:#cbd5e1;padding:6px 0;border-bottom:1px dashed #24324a;display:flex;align-items:center;gap:8px}
-.checklist li:last-child{border-bottom:0}
-footer{text-align:center;color:#7f8ca5;padding:22px 12px;font-size:11px;border-top:1px solid #182236}
-@media(max-width:860px){
-  .layout{grid-template-columns:1fr}
-  header{position:static}
-  .hero h2{font-size:21px}
-  .grid3{grid-template-columns:1fr}
-}
-@media(max-width:520px){
-  .grid2{grid-template-columns:1fr}
-}
-</style>
-</head>
+:root{--bg:#080d19;--panel:#111b2d;--panel2:#17243a;--line:#2b3b56;--txt:#f4f7ff;--muted:#9aabc5;--pink:#ff477e;--cyan:#40e0d0;--green:#34d399}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#22234b 0,transparent 35%),var(--bg);color:var(--txt);font-family:system-ui,Tahoma,Arial,sans-serif}
+header{padding:18px;border-bottom:1px solid var(--line);background:#091222eF}.wrap{max-width:1100px;margin:auto}.brand{display:flex;gap:12px;align-items:center}.logo{background:linear-gradient(135deg,var(--pink),#7657ff);border-radius:14px;padding:12px;font-size:22px}h1{font-size:20px;margin:0}.sub,.hint,.muted{color:var(--muted);font-size:12px;line-height:1.8}
+main{max-width:1100px;margin:22px auto;padding:0 14px}.hero{margin-bottom:18px}.hero h2{font-size:25px;margin:5px 0}.hero p{color:var(--muted);line-height:1.8}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.card{background:linear-gradient(160deg,#16233a,#0f1728);border:1px solid var(--line);border-radius:17px;padding:17px;margin-bottom:15px}.head{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}h3{font-size:16px;margin:0 0 12px}
+label{display:block;margin:11px 0 6px;font-size:12px;color:#d4def0}input,select,textarea{width:100%;background:#091322;color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:11px;font:inherit}textarea{min-height:220px;line-height:1.9;resize:vertical}button{border:0;border-radius:10px;padding:11px 14px;background:linear-gradient(135deg,var(--pink),#bd3d9d);color:white;font-weight:750;cursor:pointer}button.alt{background:#153c42;border:1px solid #28636a}button.secondary{background:#202f49;border:1px solid #394d6d}button:disabled{opacity:.5;cursor:wait}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions button{flex:1;min-width:130px}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#status{padding:11px;background:#0a1a27;border:1px solid #244256;border-radius:10px;color:#a8f4d5;font-size:12px;line-height:1.8;margin-top:12px}
+.preview{width:min(100%,300px);aspect-ratio:9/16;margin:12px auto;background:linear-gradient(145deg,#32245b,#0d2436);border:2px solid #52627e;border-radius:22px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;position:relative}.pv{position:relative;z-index:2}.pv small{color:#9ff9ec}.pv strong{display:block;font-size:22px;line-height:1.5;margin:15px 0}.pv p{line-height:1.9}
+.scene{border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:10px;background:#0b1423}.scene img{width:100%;max-height:230px;object-fit:cover;border-radius:9px;margin-top:8px}.scene p{font-size:12px;color:#c6d2e7;line-height:1.8}.pill{border:1px solid #33566a;border-radius:99px;padding:4px 9px;color:#a9f7eb;font-size:11px}
+footer{text-align:center;color:var(--muted);padding:22px;font-size:11px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.hero h2{font-size:21px}.two{grid-template-columns:1fr}}
+</style></head>
 <body>
-
-<header>
-  <div class="wrap brand">
-    <div class="logo">✦</div>
-    <div>
-      <h1>StoryMaster AI Pro</h1>
-      <div class="sub">TikTok & Facebook Story Studio · استوديو القصص والنشر المتكامل</div>
-    </div>
-    <div class="top-badges">
-      <span class="pill">قصة واحدة متواصلة</span>
-      <span class="pill">عمودي 9:16</span>
-      <span class="pill">TikTok + Facebook</span>
-    </div>
-  </div>
-</header>
-
+<header><div class="wrap brand"><div class="logo">✦</div><div><h1>StoryMasterAI Publisher</h1><div class="sub">استوديو صناعة قصة واحدة وفيديو عمودي</div></div><span class="pill" style="margin-right:auto">Gemini Studio</span></div></header>
 <main>
-  <section class="hero">
-    <div class="eyebrow">من الفكرة إلى النشر على تيك توك وفيسبوك</div>
-    <h2>أنشئ قصتك الكاملة، صدّر الفيديو، وجهّز النشر المباشر على TikTok وFacebook</h2>
-    <p>نسخة متكاملة تعمل في المتصفح مع مولّد قصص ذكي، معاينة حية، تصدير فيديو عمودي، وتجهيز كامل لحسابات وأوصاف وهاشتاغات TikTok وFacebook مع دعم ربط نقطة API للنشر المباشر.</p>
-  </section>
-
-  <div class="layout">
-    <div>
-      <section class="card">
-        <div class="card-head">
-          <h3>✍️ 1. إعداد وتوليد القصة</h3>
-          <span class="pill">بدون تقسيم حلقات</span>
-        </div>
-        <div class="grid3">
-          <div>
-            <label for="genre">نوع القصة</label>
-            <select id="genre">
-              <option value="mystery">غموض وتشويق</option>
-              <option value="drama">دراما إنسانية</option>
-              <option value="fantasy">خيال وفانتازيا</option>
-              <option value="adventure">مغامرة واكتشاف</option>
-              <option value="inspiring">إلهام وتطوير الذات</option>
-              <option value="truecrime">قصص واقعية مثيرة</option>
-            </select>
-          </div>
-          <div>
-            <label for="duration">طول النص</label>
-            <select id="duration">
-              <option value="short">قصيرة (30-45 ثانية)</option>
-              <option value="medium" selected>متوسطة (60 ثانية)</option>
-              <option value="long">طويلة (90+ ثانية)</option>
-            </select>
-          </div>
-          <div>
-            <label for="style">أسلوب السرد</label>
-            <select id="style">
-              <option value="cinematic">سينمائي ومشوّق</option>
-              <option value="emotional">عاطفي ومؤثر</option>
-              <option value="twist">غامض مع مفاجأة</option>
-              <option value="fast">سريع وجذاب للانتباه</option>
-            </select>
-          </div>
-        </div>
-
-        <label for="idea">فكرة القصة أو الجملة الافتتاحية (Hook)</label>
-        <input id="idea" placeholder="مثلاً: رسالة غامضة وصلت بعد 20 سنة إلى عنوان لم يعد موجوداً">
-
-        <div class="actions">
-          <button type="button" id="generate">✦ إنشاء مسودة قصة كاملة</button>
-          <button type="button" class="secondary" id="improveHook">⚡ تحسين جملة البداية</button>
-          <button type="button" class="secondary" id="clear">مسح الحقول</button>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="card-head">
-          <h3>📖 2. تحرير القصة الكاملة</h3>
-          <span class="muted" id="wordCount">0 كلمة · ~0 ثانية قراءة</span>
-        </div>
-        <label for="title">عنوان القصة</label>
-        <input id="title" placeholder="اكتب عنواناً قوياً يجذب المشاهد">
-
-        <label for="story">النص الكامل — قصة واحدة متواصلة</label>
-        <textarea id="story" placeholder="ستظهر القصة الكاملة هنا. يمكنك تعديلها بحرية قبل التصدير أو النشر..."></textarea>
-
-        <div class="actions">
-          <button type="button" class="secondary" id="copy">نسخ القصة</button>
-          <button type="button" class="secondary" id="download">تنزيل TXT</button>
-          <button type="button" class="secondary" id="save">حفظ المسودة</button>
-          <button type="button" class="secondary" id="load">استرجاع</button>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="card-head">
-          <h3>🎙️ 3. التعليق الصوتي</h3>
-          <span class="pill">معاينة صوتية</span>
-        </div>
-        <div class="grid2">
-          <div>
-            <label for="voiceLang">لغة القراءة</label>
-            <select id="voiceLang">
-              <option value="ar">العربية</option>
-              <option value="en">English</option>
-              <option value="fr">Français</option>
-            </select>
-          </div>
-          <div>
-            <label for="rate">سرعة الإلقاء</label>
-            <select id="rate">
-              <option value="0.85">هادئة ومؤثرة</option>
-              <option value="1" selected>طبيعية متوازنة</option>
-              <option value="1.15">سريعة وحماسية</option>
-            </select>
-          </div>
-        </div>
-        <div class="actions">
-          <button type="button" class="alt" id="speak">▶ استمع للقصة</button>
-          <button type="button" class="secondary" id="stop">⏹ إيقاف القراءة</button>
-        </div>
-        <p class="hint">ملاحظة: القراءة الصوتية تعمل عبر محرك الصوت في هاتفك/متصفحك للمعاينة، بينما ملف الفيديو المصدّر من المتصفح يكون بصيغة WebM جاهزاً لإضافة صوتك أو موسيقى الخلفية عليه في TikTok أو Reels.</p>
-      </section>
-    </div>
-
-    <div>
-      <section class="card">
-        <div class="card-head">
-          <h3>📱 4. المعاينة وتصدير الفيديو</h3>
-          <select id="aspect" style="width:auto;padding:6px 10px;font-size:12px">
-            <option value="9:16" selected>عمودي 9:16 (TikTok / Reels)</option>
-            <option value="1:1">مربع 1:1 (Facebook Feed)</option>
-          </select>
-        </div>
-
-        <div class="preview-wrap">
-          <div class="preview" id="previewBox">
-            <div class="pv-ui"><span>❤️</span><span>💬</span><span>↗️</span></div>
-            <div class="pvcontent">
-              <div class="pvbrand">STORYMASTER ORIGINAL</div>
-              <div class="pvtitle" id="pvtitle">عنوان قصتك يظهر هنا</div>
-              <div class="pvtext" id="pvtext">اكتب قصتك أو أنشئ مسودة لتظهر معاينتها الحية هنا.</div>
-              <div class="pvfoot">تابع الحكاية حتى النهاية ✦</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid2">
-          <div>
-            <label for="caption">النص الظاهر في المعاينة</label>
-            <select id="caption">
-              <option value="auto">مقتطف تلقائي من القصة</option>
-              <option value="title">العنوان فقط</option>
-              <option value="hook">جملة البداية (Hook)</option>
-            </select>
-          </div>
-          <div>
-            <label for="theme">نمط ألوان الفيديو</label>
-            <select id="theme">
-              <option value="neon">ليلي نيون (بنفسجي/تركواز)</option>
-              <option value="gold">سينمائي دافئ (ذهبي/كحلي)</option>
-              <option value="crimson">غموض داكن (قرمزي/أسود)</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button type="button" class="secondary" id="refresh">تحديث المعاينة</button>
-          <button type="button" class="alt" id="export">🎬 تصدير فيديو WebM</button>
-        </div>
-        <div class="progress"><span id="bar"></span></div>
-        <div id="status">جاهز. اكتب فكرة قصتك أو اضغط «إنشاء مسودة قصة كاملة».</div>
-      </section>
-
-      <section class="card">
-        <div class="card-head">
-          <h3>🔗 5. الربط والنشر — TikTok & Facebook</h3>
-          <span class="pill ok" id="syncBadge">حزمة النشر جاهزة</span>
-        </div>
-
-        <div class="tabs">
-          <button type="button" class="tab active" data-tab="accounts">الحسابات والربط</button>
-          <button type="button" class="tab" data-tab="tiktok">إعداد منشور TikTok</button>
-          <button type="button" class="tab" data-tab="facebook">إعداد منشور Facebook</button>
-        </div>
-
-        <div class="tab-pane active" id="tab-accounts">
-          <div class="social-box">
-            <div class="social-head">
-              <div class="social-title"><span class="dot" id="ttDot"></span> حساب TikTok</div>
-              <span class="pill warn" id="ttState">غير مرتبط</span>
-            </div>
-            <label for="ttUser">اسم المستخدم (@username)</label>
-            <input id="ttUser" placeholder="@storymaster.ar">
-            <label for="ttClientKey">TikTok Client Key / رابط Webhook (اختياري للنشر الآلي)</label>
-            <input id="ttClientKey" placeholder="أدخل Client Key أو رابط الخادم الوسيط إن وجد">
-            <div class="actions">
-              <button type="button" class="tt-btn" id="connectTT">ربط حساب TikTok</button>
-              <button type="button" class="secondary" id="openTT">فتح استوديو رفع TikTok ↗</button>
-            </div>
-          </div>
-
-          <div class="social-box">
-            <div class="social-head">
-              <div class="social-title"><span class="dot" id="fbDot"></span> صفحة / حساب Facebook</div>
-              <span class="pill warn" id="fbState">غير مرتبط</span>
-            </div>
-            <label for="fbPage">اسم الصفحة أو معرف الصفحة (Page Name / ID)</label>
-            <input id="fbPage" placeholder="مثلاً: حكايات وقصص عربية">
-            <label for="fbToken">Facebook Graph Token / رابط Webhook (اختياري للنشر الآلي)</label>
-            <input id="fbToken" type="password" placeholder="أدخل رمز الصفحة أو رابط الخادم الوسيط إن وجد">
-            <div class="actions">
-              <button type="button" class="fb-btn" id="connectFB">ربط صفحة Facebook</button>
-              <button type="button" class="secondary" id="openFB">فتح Facebook Reels / النشر ↗</button>
-            </div>
-          </div>
-
-          <div class="actions">
-            <button type="button" class="ok-btn" id="publishAll">🚀 تنفيذ النشر / إرسال الحزمة للمنصتين</button>
-          </div>
-          <p class="hint">ملاحظة أمنية وتقنية: المتصفح يحفظ بيانات الربط محلياً على جهازك فقط. عند وجود خادم خلفي (Backend OAuth/Webhook) يتم إرسال الفيديو والوصف مباشرة إليه؛ وبدون خادم يتم تجهيز الفيديو ونسخ الوصف وفتح نافذة الرفع الرسمية لـ TikTok وFacebook فوراً.</p>
-        </div>
-
-        <div class="tab-pane" id="tab-tiktok">
-          <label for="ttCaption">وصف فيديو TikTok + الهاشتاغات</label>
-          <textarea id="ttCaption" class="small" placeholder="سيتم توليد وصف جذاب وهاشتاغات مناسبة لتيك توك تلقائياً..."></textarea>
-          <div class="meta-row">
-            <span id="ttCount">0 / 2200 حرف</span>
-            <span>الخصوصية: عام (Public)</span>
-          </div>
-          <div class="grid2">
-            <div>
-              <label for="ttPrivacy">إعداد الخصوصية</label>
-              <select id="ttPrivacy">
-                <option value="PUBLIC_TO_EVERYONE" selected>عام للجميع</option>
-                <option value="MUTUAL_FOLLOW_FRIENDS">الأصدقاء فقط</option>
-                <option value="SELF_ONLY">خاص (مسودة)</option>
-              </select>
-            </div>
-            <div>
-              <label for="ttComments">التعليقات والثنائيات</label>
-              <select id="ttComments">
-                <option value="all" selected>السماح بالتعليقات وDuet</option>
-                <option value="comments">التعليقات فقط</option>
-                <option value="off">إيقاف التعليقات</option>
-              </select>
-            </div>
-          </div>
-          <div class="actions">
-            <button type="button" class="secondary" id="genSocial">تحديث الوصف من القصة</button>
-            <button type="button" class="tt-btn" id="copyTT">نسخ وصف TikTok</button>
-          </div>
-        </div>
-
-        <div class="tab-pane" id="tab-facebook">
-          <label for="fbCaption">منشور Facebook (Reels أو فيديو الصفحة)</label>
-          <textarea id="fbCaption" class="small" placeholder="سيتم توليد نص منشور فيسبوك مع سؤال تفاعلي لزيادة التعليقات..."></textarea>
-          <div class="meta-row">
-            <span id="fbCount">0 حرف</span>
-            <span>النوع: Facebook Reels / Video</span>
-          </div>
-          <div class="grid2">
-            <div>
-              <label for="fbFormat">صيغة النشر على Facebook</label>
-              <select id="fbFormat">
-                <option value="reels" selected>Facebook Reels (9:16)</option>
-                <option value="feed">منشور فيديو في الصفحة</option>
-              </select>
-            </div>
-            <div>
-              <label for="fbCta">دعوة للتفاعل (CTA)</label>
-              <select id="fbCta">
-                <option value="question" selected>سؤال في نهاية المنشور</option>
-                <option value="follow">دعوة لمتابعة الصفحة</option>
-                <option value="share">دعوة لمشاركة القصة</option>
-              </select>
-            </div>
-          </div>
-          <div class="actions">
-            <button type="button" class="secondary" id="genSocial2">تحديث منشور Facebook</button>
-            <button type="button" class="fb-btn" id="copyFB">نسخ منشور Facebook</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <h3>✅ قائمة الجاهزية قبل النشر</h3>
-        <ul class="checklist" id="checklist">
-          <li id="chkStory">⬜ كتابة أو توليد نص القصة الكاملة</li>
-          <li id="chkVideo">⬜ تصدير ملف الفيديو العمودي (WebM)</li>
-          <li id="chkTT">⬜ ربط حساب TikTok وتجهيز الوصف</li>
-          <li id="chkFB">⬜ ربط صفحة Facebook وتجهيز المنشور</li>
-        </ul>
-      </section>
-    </div>
-  </div>
-</main>
-
-<footer>StoryMaster AI Pro · TikTok & Facebook Story Studio · نسخة كاملة مستقلة</footer>
-
+<section class="hero"><div class="pill">من الفكرة إلى الفيديو</div><h2>حوّل فكرتك إلى قصة ومشاهد وصوت وصور</h2><p>اكتب فكرة واحدة. ينشئ Gemini قصة مترابطة، ثم يحولها إلى مشاهد مصورة وتعليق صوتي، ويمكنك تصدير فيديو واحد عمودي.</p></section>
+<div class="grid">
+<div>
+<section class="card">
+<h3>1 — إعداد القصة</h3>
+<div class="two"><div><label>نوع القصة</label><select id="genre"><option>غموض وتشويق</option><option>دراما إنسانية</option><option>خيال ومغامرة</option><option>إلهام</option><option>تاريخ</option><option>كوميديا</option></select></div><div><label>طول القصة</label><select id="length"><option value="short">قصيرة</option><option value="medium" selected>متوسطة</option><option value="long">طويلة</option></select></div></div>
+<label>فكرة القصة</label><input id="idea" placeholder="مثلاً: رسالة تصل إلى شخص بعد عشرين سنة...">
+<div class="actions"><button id="makeStory">✦ أنشئ القصة بـ Gemini</button><button class="secondary" id="clear">مسح</button></div>
+<label>عنوان القصة</label><input id="title" placeholder="عنوان القصة">
+<label>القصة الكاملة — نص واحد متواصل</label><textarea id="story" placeholder="ستظهر القصة هنا..."></textarea>
+<div class="actions"><button class="secondary" id="save">حفظ المسودة</button><button class="secondary" id="copy">نسخ القصة</button></div>
+</section>
+<section class="card">
+<div class="head"><h3>2 — المشاهد والصور</h3><span class="pill" id="sceneState">لم يتم التحليل</span></div>
+<p class="hint">يحوّل Gemini القصة إلى مشاهد إنتاجية داخل فيديو واحد. بعد ذلك أنشئ صورة لكل مشهد.</p>
+<div class="actions"><button id="makeScenes">حلّل القصة إلى مشاهد</button><button class="alt" id="makeImages" disabled>أنشئ صور المشاهد</button></div>
+<div id="scenes"></div>
+</section>
+</div>
+<div>
+<section class="card">
+<h3>3 — التعليق الصوتي</h3>
+<p class="hint">ينشئ Gemini ملف صوتي من القصة. يمكنك الاستماع إليه ثم إدخاله في الفيديو النهائي.</p>
+<div class="two"><div><label>نبرة الصوت</label><select id="voiceStyle"><option>سرد عربي دافئ وواضح</option><option>سينمائي ومشوّق</option><option>هادئ وعاطفي</option></select></div><div><label>الصوت</label><select id="voice"><option value="Kore">Kore</option><option value="Puck">Puck</option><option value="Charon">Charon</option><option value="Aoede">Aoede</option></select></div></div>
+<div class="actions"><button id="makeAudio">🎙️ إنشاء التعليق الصوتي</button><button class="secondary" id="playAudio" disabled>استماع</button></div>
+<audio id="audioPlayer" controls style="width:100%;margin-top:10px;display:none"></audio>
+</section>
+<section class="card">
+<h3>4 — معاينة وتصدير فيديو واحد</h3>
+<div class="preview"><div class="pv"><small>STORYMASTER ORIGINAL</small><strong id="previewTitle">عنوان قصتك</strong><p id="previewText">أنشئ القصة لتظهر المعاينة هنا.</p></div></div>
+<label>مدة كل مشهد (ثوانٍ)</label><select id="sceneSeconds"><option value="4">4 ثوانٍ</option><option value="6" selected>6 ثوانٍ</option><option value="8">8 ثوانٍ</option></select>
+<div class="actions"><button id="exportVideo" class="alt">🎬 تصدير الفيديو</button></div>
+<p class="hint">يصدر المتصفح فيديو WebM عمودياً، ويضم الصور التي تم توليدها والصوت إذا تم إنشاؤه. قد تحتاج لتحويله إلى MP4 قبل بعض المنصات.</p>
+<div id="status">جاهز. أضف رابط الخادم في إعدادات الاتصال.</div>
+</section>
+<section class="card">
+<h3>5 — اتصال الخادم</h3>
+<label>رابط Backend على Render</label><input id="apiBase" placeholder="https://اسم-الخدمة.onrender.com">
+<div class="actions"><button id="testApi" class="secondary">اختبار الاتصال</button></div>
+<p class="hint">مفتاح Gemini يوضع في Render Environment Variables باسم GEMINI_API_KEY، ولا تكتبه هنا أو في GitHub.</p>
+</section>
+<section class="card" id="publishingCard">
+<h3>6 — تجهيز ونشر TikTok وFacebook</h3>
+<p class="hint">نفس الفيديو الواحد مع منشور مستقل لكل منصة. اربط حساباتك بالموافقة الرسمية، وراجع النص قبل النشر.</p>
+<div class="actions"><button id="preparePosts" class="alt">✦ تجهيز المنشورين</button><button id="refreshConnections" class="secondary">تحديث حالة الربط</button></div>
+<label>منشور TikTok</label><textarea id="tiktokPost" style="min-height:125px" placeholder="سيظهر وصف TikTok والهاشتاغات هنا..."></textarea>
+<div class="actions"><button id="copyTikTok" class="secondary">نسخ منشور TikTok</button></div>
+<label>خصوصية TikTok</label><select id="tiktokPrivacy"><option value="SELF_ONLY">خاص — SELF_ONLY</option></select>
+<div class="actions"><button id="connectTikTok">ربط حساب TikTok</button><button id="publishTikTok" class="alt" disabled>رفع/نشر على TikTok</button></div>
+<div class="hint" id="tiktokState">TikTok غير مربوط.</div>
+<hr style="border:0;border-top:1px solid var(--line);margin:16px 0">
+<label>منشور Facebook</label><textarea id="facebookPost" style="min-height:125px" placeholder="سيظهر منشور Facebook هنا..."></textarea>
+<div class="actions"><button id="copyFacebook" class="secondary">نسخ منشور Facebook</button></div>
+<label>صفحة Facebook</label><select id="facebookPage"><option value="">اربط حساب Facebook أولاً</option></select>
+<div class="actions"><button id="connectFacebook">ربط Facebook</button><button id="publishFacebook" class="alt" disabled>نشر الفيديو على الصفحة</button></div>
+<div class="hint" id="facebookState">Facebook غير مربوط.</div>
+<label>أو اختر فيديو من الجهاز</label><input type="file" id="publishVideoFile" accept="video/mp4,video/webm,video/quicktime">
+<p class="hint">يمكن استعمال الفيديو الذي صدر من التطبيق مباشرة لـ TikTok. لفيسبوك، يفضّل اختيار MP4. الرفع الفعلي يتطلب إعداد مفاتيح التطبيقات وموافقة المنصات.</p>
+</section>
+</div></div></main>
+<footer>StoryMasterAI Publisher · قصة واحدة · فيديو عمودي 9:16 · تجهيز ونشر المنصات</footer>
 <script>
-const $ = id => document.getElementById(id);
-
-const samples = {
-  mystery: {
-    title: "الرسالة التي وصلت بعد 20 سنة",
-    hook: "في مساء هادئ، وجد بطل الحكاية رسالة قديمة عند باب البيت لا تحمل اسم مرسل.",
-    a: "في مساء هادئ، وجد بطل الحكاية رسالة قديمة عند باب البيت. لم يكن عليها اسم مرسل، لكن الجملة الأولى جعلت قلبه يتوقف لحظة: «إذا قرأت هذه الرسالة، فهذا يعني أن السر لم يعد سراً».",
-    b: "حاول أن يتذكر من يمكن أن يترك رسالة كهذه، ثم لاحظ تاريخاً مكتوباً في أسفل الورقة يعود إلى يوم اختفى فيه شخص من العائلة دون تفسير. فتح الظرف مرة أخرى، فوجد صورة قديمة ووراءها عنوان بيت لم يزره من قبل.",
-    c: "قادته الخطوات إلى بيت صغير عند طرف البلدة. كان الباب مفتوحاً، وعلى الطاولة دفتر مليء بأسماء وتواريخ. وبين الصفحات ظهرت الحقيقة التي غيّرت فهمه لكل ما حدث: لم يكن الغياب هروباً، بل محاولة لحماية الجميع من خطأ قديم.",
-    d: "وقبل أن يغادر، وجد سطراً أخيراً بخط يعرفه جيداً: «الحقيقة لا تنتهي عندما نكتشفها، بل تبدأ عندها مسؤوليتنا». عاد إلى البيت والرسالة في يده، وقد فهم أخيراً لماذا انتظرت كل هذه السنوات.",
-    tags: "#قصص_غموض #حكايات #تشويق #قصص_واقعية #تيك_توك"
-  },
-  drama: {
-    title: "المقعد الفارغ في المقهى",
-    hook: "كل صباح كان يطلب كوبين من القهوة، رغم أن المقعد المقابل له لم يجلس عليه أحد منذ سنوات.",
-    a: "اعتادت سلمى أن تمر كل صباح أمام المقهى الصغير، حيث يجلس رجل مسن وحده قرب النافذة. كان يضع كوبين على الطاولة دائماً، رغم أن المقعد المقابل بقي فارغاً.",
-    b: "في يوم ممطر، سألته بلطف عن سر الكوب الثاني. نظر إلى النافذة طويلاً ثم قال إنه يحجزه لشخص وعده أن يعود. أخرج من جيبه ورقة مطوية بعناية، عليها كلمات قصيرة وصورة باهتة.",
-    c: "عرفت سلمى من الصورة أن الرجل ينتظر صديق طفولته الذي فرّقتهما الحياة. بحثت معه في سجلات قديمة وسألت أشخاصاً من الحي، حتى عثرا على خيط يقودهما إلى مدينة قريبة.",
-    d: "لم تكن العودة كما تخيلها الرجل، لكنها حملت شيئاً أثمن: رسالة اعتذار وصلت أخيراً، وذكريات لم تمت. في الصباح التالي وضع كوباً واحداً فقط، لكنه ابتسم للمرة الأولى منذ زمن.",
-    tags: "#قصص_مؤثرة #دراما #إنسانية #حكاية #قصص_عربية"
-  },
-  fantasy: {
-    title: "حارس الضوء الأخير",
-    hook: "في مدينة لا ترى الشمس إلا دقائق قليلة في السنة، أضاء كتاب مهجور باسم فتاة واحدة.",
-    a: "في مدينة لا ترى الشمس إلا دقائق قليلة كل عام، كانت ليان تعمل في مكتبة تحفظ الكتب التي لا يستطيع أحد قراءتها مرتين. وفي ليلة غريبة، أضاء كتاب مهجور بين يديها وظهر على غلافه اسمها.",
-    b: "حين فتحته، خرج منه ضوء صغير رسم طريقاً فوق الأرض. تبعته حتى برج الساعة القديم، وهناك سمعت صوتاً يخبرها أن نور المدينة لم يختفِ من تلقاء نفسه، بل نُسي المفتاح الذي يعيده.",
-    c: "وجدت المفتاح داخل صندوق تحرسه ألغاز منسية. لم يكن الحل بالقوة ولا بالسرعة، بل بتذكر حكاية كانت جدتها ترويها عن مشاركة الضوء مع الآخرين. عندها فهمت أن المفتاح لا يعمل إلا حين يتقاسم الناس ما يملكون.",
-    d: "عادت ليان إلى الساحة ورفعت المفتاح عالياً. أضاءت النوافذ واحدة بعد أخرى، وظهر أول خيط شمس منذ سنوات. لم تصبح المدينة مثالية، لكنها تذكرت أن الأمل يكبر عندما لا يحتفظ به شخص واحد.",
-    tags: "#خيال #فانتازيا #قصص_خيالية #حكايات #محتوى_عربي"
-  },
-  adventure: {
-    title: "الخريطة التي لا تكذب",
-    hook: "وصلته خريطة مرسومة باليد لا تحمل أسماء مدن، بل علامات تقود إلى سر والده.",
-    a: "وصلت إلى يونس خريطة مرسومة باليد، لا تحمل أسماء مدن بل علامات صغيرة تشبه النجوم. قيل له إن الخريطة تقود إلى مكان اختفت منه إجابات أسئلة كثيرة، لكنه لم يكن يبحث عن كنز.",
-    b: "بدأ رحلته ومعه دفتر صغير وصورة قديمة. كل علامة قادته إلى شخص ساعده بكلمة أو ذكرى، وكل خطوة كشفت جزءاً من حكاية عائلته التي لم يسمعها كاملة من قبل.",
-    c: "عند آخر نقطة، وجد غرفة بسيطة مليئة برسائل كتبها أشخاص مروا من هناك. لم يكن المكان سرياً كما تخيل، بل محطة ترك فيها المسافرون نصائح لمن يأتي بعدهم. وبين الرسائل وجد جواباً بخط والده.",
-    d: "عاد يونس من الرحلة من دون ذهب أو مجوهرات، لكنه حمل شيئاً لا يقدر بثمن: فهم أن الطريق الذي يغيرنا أهم أحياناً من المكان الذي نصل إليه.",
-    tags: "#مغامرة #رحلة #قصص_ملهمة #اكتشاف #ستوري"
-  },
-  inspiring: {
-    title: "خطوة واحدة تكفي",
-    hook: "ظل يؤجل حلمه سنوات بانتظار اللحظة المثالية، حتى غيّرت عشر دقائق فقط كل حياته.",
-    a: "كان آدم يظن أن الفرص الكبيرة لا تأتي إلا لمن يملك موهبة استثنائية أو بداية مثالية. لذلك كان يؤجل حلمه كلما وجد سبباً جديداً للتأجيل.",
-    b: "في يوم عادي، قرر أن يبدأ بعشر دقائق فقط. لم يتغير العالم في ذلك اليوم، ولم يصفق له أحد، لكنه اكتشف أن أصعب جزء لم يكن العمل نفسه، بل اتخاذ القرار الأول.",
-    c: "مرّت أسابيع من المحاولات الصغيرة. أخطأ وتعلم، وغيّر خطته أكثر من مرة، لكنه صار يرى تقدمه في أشياء لم ينتبه لها من قبل: ثقة أكبر، أفكار أوضح، وقدرة على الاستمرار.",
-    d: "وعندما سأله صديقه عن سر التغيير، أجاب: لم أنتظر أن أصبح مستعداً تماماً. بدأت بما أستطيع، ثم تعلمت الطريق وأنا أمشي فيه. أحياناً لا تحتاج إلى قفزة كبيرة؛ تحتاج فقط إلى خطوة صادقة.",
-    tags: "#تحفيز #تطوير_الذات #نجاح #إلهام #قصص_نجاح"
-  },
-  truecrime: {
-    title: "الشاهد الذي لم يتكلم",
-    hook: "في ملف قضية أُغلقت منذ 15 عاماً، كان هناك تفصيل صغير لم ينتبه إليه أحد.",
-    a: "في أرشيف قديم للتحقيقات، بقي ملف قضية غامضة مغلقاً لسنوات طويلة دون إجابة واضحة. الجميع ظن أن كل الأدلة قد فُحصت، إلا محققاً شاباً لاحظ اختلافاً بسيطاً في توقيت مكالمة واحدة.",
-    b: "عاد إلى المكان نفسه وسأل الجيران من جديد، فتبين أن الكاميرا الوحيدة في الشارع لم تكن معطلة كما كُتب في التقرير، بل كانت موجهة نحو زاوية أخرى التقطت لحظة خروج شخص لم يُستجوب أبداً.",
-    c: "عندما تتبع الخيط الجديد، اكتشف أن الحقيقة كانت أبسط وأقرب مما توقع الجميع، وأن الصمت طوال تلك السنوات كان سببه خوف شاهد واحد من كشف ما رآه.",
-    d: "أُعيد فتح الملف وظهرت الحقيقة أخيراً، لتثبت أن أصغر تفصيل مهمل قد يكون المفتاح الكامل لأكثر القضايا تعقيداً.",
-    tags: "#قصص_واقعية #تحقيق #غموض #قضايا #حكايات_واقعية"
-  }
-};
-
-let lastExportedBlob = null;
-
-function setStatus(msg) {
-  $("status").textContent = msg;
-}
-
-function updateStats() {
-  const text = $("story").value.trim();
-  const words = text ? text.split(/\s+/).length : 0;
-  const sec = Math.round(words / 2.3);
-  $("wordCount").textContent = `${words} كلمة · ~${sec} ثانية قراءة`;
-  $("chkStory").textContent = words >= 15 ? "✅ تم تجهيز نص القصة الكاملة" : "⬜ كتابة أو توليد نص القصة الكاملة";
-}
-
-function buildSocialCopy() {
-  const title = $("title").value.trim() || "حكاية جديدة";
-  const story = $("story").value.trim();
-  const genre = $("genre").value;
-  const tags = samples[genre]?.tags || "#قصص #حكايات #تيك_توك";
-  const firstSentence = story.split(/[.!؟
-]/)[0]?.trim() || title;
-
-  const ttText = `${title} ✨
-
-${firstSentence}...
-شاهد القصة كاملة حتى النهاية 👇
-
-${tags}`;
-  $("ttCaption").value = ttText;
-  $("ttCount").textContent = `${ttText.length} / 2200 حرف`;
-
-  const ctaMap = {
-    question: "برأيك، لو كنت مكانه ماذا كنت ستفعل؟ اكتب رأيك في التعليقات 👇",
-    follow: "تابع الصفحة للمزيد من القصص والحكايات اليومية ✦",
-    share: "شارك القصة مع شخص يحب هذا النوع من الحكايات ↗️"
-  };
-  const cta = ctaMap[$("fbCta").value] || ctaMap.question;
-  const fbText = `📖 ${title}
-
-${firstSentence}.
-
-${cta}
-
-${tags} #فيسبوك #Reels`;
-  $("fbCaption").value = fbText;
-  $("fbCount").textContent = `${fbText.length} حرف`;
-}
-
-function makeStory() {
-  const g = $("genre").value;
-  const s = samples[g];
-  const idea = $("idea").value.trim();
-  const dur = $("duration").value;
-  const style = $("style").value;
-
-  const opening = idea ? `تبدأ الحكاية من فكرة واحدة: ${idea}. ` : "";
-  const styleLine =
-    style === "emotional" ? "وكانت التفاصيل الصغيرة تقول أكثر مما تقوله الكلمات. " :
-    style === "twist" ? "لكن الحقيقة كانت تختبئ في تفصيل لم ينتبه إليه أحد. " :
-    style === "fast" ? "ولم يكن هناك وقت للتردد؛ فالقرار التالي سيغيّر كل شيء. " :
-    "ومع كل خطوة، كانت الصورة تتضح بطريقة لم يتوقعها أحد. ";
-
-  let body = `${s.a} ${s.b} ${s.c} ${s.d}`;
-  if (dur === "short") body = `${s.a} ${styleLine}${s.d}`;
-  if (dur === "long") body = `${s.a} ${s.b} ${styleLine}${s.c} ${s.d} وهكذا بقيت هذه القصة شاهداً على أن أصغر القرارات قد تصنع أكبر التحولات في حياتنا.`;
-
-  $("title").value = idea ? idea.slice(0, 60) : s.title;
-  $("story").value = opening + body;
-  refresh();
-  buildSocialCopy();
-  setStatus("تم إنشاء مسودة قصة كاملة وتجهيز أوصاف TikTok وFacebook تلقائياً.");
-}
-
-function refresh() {
-  const title = $("title").value.trim() || "عنوان قصتك يظهر هنا";
-  const story = $("story").value.trim();
-  $("pvtitle").textContent = title;
-
-  let text = story;
-  if ($("caption").value === "title") text = title;
-  else if ($("caption").value === "hook") text = story.split(/[.!؟
-]/)[0] || "اكتب بداية قصتك";
-  else text = story.slice(0, 175) + (story.length > 175 ? "…" : "");
-  $("pvtext").textContent = text || "اكتب قصتك أو أنشئ مسودة لتظهر معاينتها الحية هنا.";
-
-  const box = $("previewBox");
-  box.classList.toggle("square", $("aspect").value === "1:1");
-
-  const theme = $("theme").value;
-  if (theme === "gold") {
-    box.style.background = "linear-gradient(155deg,#1e293b,#0f172a 55%,#78350f)";
-  } else if (theme === "crimson") {
-    box.style.background = "linear-gradient(155deg,#3b0d1e,#0f172a 58%,#1e1b4b)";
-  } else {
-    box.style.background = "linear-gradient(155deg,#2e2159,#111936 55%,#0b454e)";
-  }
-
-  updateStats();
-}
-
-function saveSocialState() {
-  const state = {
-    ttUser: $("ttUser").value.trim(),
-    ttClientKey: $("ttClientKey").value.trim(),
-    ttConnected: $("ttState").dataset.connected === "1",
-    fbPage: $("fbPage").value.trim(),
-    fbToken: $("fbToken").value.trim(),
-    fbConnected: $("fbState").dataset.connected === "1"
-  };
-  try {
-    localStorage.setItem("sm-social-pro", JSON.stringify(state));
-  } catch (e) {}
-  updateSocialUI(state);
-}
-
-function updateSocialUI(state) {
-  const ttOk = Boolean(state.ttConnected && state.ttUser);
-  $("ttState").textContent = ttOk ? `مرتبط: ${state.ttUser}` : "غير مرتبط";
-  $("ttState").className = ttOk ? "pill ok" : "pill warn";
-  $("ttDot").classList.toggle("on", ttOk);
-  $("chkTT").textContent = ttOk ? `✅ حساب TikTok مرتبط (${state.ttUser})` : "⬜ ربط حساب TikTok وتجهيز الوصف";
-
-  const fbOk = Boolean(state.fbConnected && state.fbPage);
-  $("fbState").textContent = fbOk ? `مرتبط: ${state.fbPage}` : "غير مرتبط";
-  $("fbState").className = fbOk ? "pill ok" : "pill warn";
-  $("fbDot").classList.toggle("on", fbOk);
-  $("chkFB").textContent = fbOk ? `✅ صفحة Facebook مرتبطة (${state.fbPage})` : "⬜ ربط صفحة Facebook وتجهيز المنشور";
-}
-
-function loadSocialState() {
-  try {
-    const raw = JSON.parse(localStorage.getItem("sm-social-pro") || "{}");
-    if (raw.ttUser) $("ttUser").value = raw.ttUser;
-    if (raw.ttClientKey) $("ttClientKey").value = raw.ttClientKey;
-    if (raw.ttConnected) $("ttState").dataset.connected = "1";
-    if (raw.fbPage) $("fbPage").value = raw.fbPage;
-    if (raw.fbToken) $("fbToken").value = raw.fbToken;
-    if (raw.fbConnected) $("fbState").dataset.connected = "1";
-    updateSocialUI(raw);
-  } catch (e) {}
-}
-
-function drawRoundedRect(ctx, x, y, w, h, r) {
-  const rad = Math.min(r, w / 2, h / 2);
-  ctx.beginPath();
-  ctx.moveTo(x + rad, y);
-  ctx.arcTo(x + w, y, x + w, y + h, rad);
-  ctx.arcTo(x + w, y + h, x, y + h, rad);
-  ctx.arcTo(x, y + h, x, y, rad);
-  ctx.arcTo(x, y, x + w, y, rad);
-  ctx.closePath();
-  ctx.fill();
-}
-
-document.querySelectorAll(".tab").forEach(btn => {
-  btn.onclick = () => {
-    document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
-    document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"));
-    btn.classList.add("active");
-    const pane = $("tab-" + btn.dataset.tab);
-    if (pane) pane.classList.add("active");
-  };
-});
-
-$("generate").onclick = makeStory;
-$("improveHook").onclick = () => {
-  const g = $("genre").value;
-  const hook = samples[g]?.hook || "";
-  const cur = $("story").value.trim();
-  $("story").value = cur ? (hook + "
-" + cur) : hook;
-  refresh();
-  buildSocialCopy();
-  setStatus("تمت إضافة جملة افتتاحية قوية (Hook) في بداية القصة.");
-};
-$("refresh").onclick = refresh;
-$("caption").onchange = refresh;
-$("aspect").onchange = refresh;
-$("theme").onchange = refresh;
-$("title").oninput = () => { refresh(); buildSocialCopy(); };
-$("story").oninput = () => { refresh(); buildSocialCopy(); };
-$("fbCta").onchange = buildSocialCopy;
-$("genSocial").onclick = () => { buildSocialCopy(); setStatus("تم تحديث وصف TikTok ومنشور Facebook."); };
-$("genSocial2").onclick = () => { buildSocialCopy(); setStatus("تم تحديث وصف TikTok ومنشور Facebook."); };
-
-$("clear").onclick = () => {
-  ["idea", "title", "story"].forEach(id => $(id).value = "");
-  refresh();
-  buildSocialCopy();
-  setStatus("تم مسح الحقول.");
-};
-
-$("copy").onclick = async () => {
-  try {
-    await navigator.clipboard.writeText(($("title").value + "
-
-" + $("story").value).trim());
-    setStatus("تم نسخ القصة الكاملة.");
-  } catch (e) {
-    $("story").select();
-    setStatus("حدد النص وانسخه يدوياً.");
-  }
-};
-
-$("copyTT").onclick = async () => {
-  try {
-    await navigator.clipboard.writeText($("ttCaption").value);
-    setStatus("تم نسخ وصف وهاشتاغات TikTok.");
-  } catch (e) {
-    $("ttCaption").select();
-    setStatus("حدد وصف TikTok وانسخه يدوياً.");
-  }
-};
-
-$("copyFB").onclick = async () => {
-  try {
-    await navigator.clipboard.writeText($("fbCaption").value);
-    setStatus("تم نسخ منشور Facebook.");
-  } catch (e) {
-    $("fbCaption").select();
-    setStatus("حدد منشور Facebook وانسخه يدوياً.");
-  }
-};
-
-$("download").onclick = () => {
-  const content = `${$("title").value}
-
-${$("story").value}
-
---- TIKTOK ---
-${$("ttCaption").value}
-
---- FACEBOOK ---
-${$("fbCaption").value}`;
-  const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "storymaster-package.txt";
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1500);
-  setStatus("تم تنزيل حزمة القصة وأوصاف النشر بصيغة TXT.");
-};
-
-$("save").onclick = () => {
-  try {
-    localStorage.setItem("sm-story-pro", JSON.stringify({
-      idea: $("idea").value,
-      genre: $("genre").value,
-      duration: $("duration").value,
-      style: $("style").value,
-      title: $("title").value,
-      story: $("story").value,
-      ttCaption: $("ttCaption").value,
-      fbCaption: $("fbCaption").value
-    }));
-    setStatus("تم حفظ المسودة وحزمة النشر على هذا الجهاز.");
-  } catch (e) {
-    setStatus("تعذر الحفظ المحلي في هذا المتصفح.");
-  }
-};
-
-$("load").onclick = () => {
-  try {
-    const x = JSON.parse(localStorage.getItem("sm-story-pro"));
-    if (!x) throw new Error("empty");
-    Object.keys(x).forEach(k => { if ($(k)) $(k).value = x[k]; });
-    refresh();
-    setStatus("تم استرجاع المسودة المحفوظة.");
-  } catch (e) {
-    setStatus("لا توجد مسودة محفوظة على هذا المتصفح.");
-  }
-};
-
-$("speak").onclick = () => {
-  const text = $("story").value.trim();
-  if (!text) return setStatus("اكتب قصة أولاً.");
-  if (!("speechSynthesis" in window)) return setStatus("القراءة الصوتية غير مدعومة في هذا المتصفح.");
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = $("voiceLang").value === "ar" ? "ar-SA" : $("voiceLang").value === "fr" ? "fr-FR" : "en-US";
-  u.rate = Number($("rate").value);
-  speechSynthesis.speak(u);
-  setStatus("تتم قراءة القصة الآن عبر صوت المتصفح.");
-};
-$("stop").onclick = () => {
-  if ("speechSynthesis" in window) speechSynthesis.cancel();
-  setStatus("تم إيقاف القراءة الصوتية.");
-};
-
-$("connectTT").onclick = () => {
-  const user = $("ttUser").value.trim();
-  if (!user) return setStatus("أدخل اسم مستخدم TikTok أولاً (مثلاً: @storymaster).");
-  $("ttState").dataset.connected = "1";
-  saveSocialState();
-  setStatus(`تم ربط حساب TikTok (${user}) وتجهيز إعدادات النشر.`);
-};
-
-$("connectFB").onclick = () => {
-  const page = $("fbPage").value.trim();
-  if (!page) return setStatus("أدخل اسم صفحة Facebook أو معرفها أولاً.");
-  $("fbState").dataset.connected = "1";
-  saveSocialState();
-  setStatus(`تم ربط صفحة Facebook (${page}) وتجهيز إعدادات النشر.`);
-};
-
-$("openTT").onclick = async () => {
-  try { await navigator.clipboard.writeText($("ttCaption").value); } catch (e) {}
-  window.open("https://www.tiktok.com/creator-center/upload", "_blank", "noopener");
-  setStatus("تم نسخ وصف TikTok وفتح صفحة الرفع الرسمية في تبويب جديد.");
-};
-
-$("openFB").onclick = async () => {
-  try { await navigator.clipboard.writeText($("fbCaption").value); } catch (e) {}
-  window.open("https://www.facebook.com/reels/create", "_blank", "noopener");
-  setStatus("تم نسخ منشور Facebook وفتح صفحة إنشاء Reels في تبويب جديد.");
-};
-
-$("publishAll").onclick = async () => {
-  const title = $("title").value.trim();
-  const story = $("story").value.trim();
-  if (!story) return setStatus("اكتب القصة أو أنشئها أولاً قبل تنفيذ النشر.");
-
-  const ttEndpoint = $("ttClientKey").value.trim();
-  const fbEndpoint = $("fbToken").value.trim();
-  const isWebhook = ttEndpoint.startsWith("http") || fbEndpoint.startsWith("http");
-
-  if (isWebhook) {
-    setStatus("جاري إرسال حزمة النشر إلى نقطة الربط المحددة...");
-    const payload = {
-      title,
-      story,
-      tiktok: {
-        username: $("ttUser").value.trim(),
-        caption: $("ttCaption").value,
-        privacy: $("ttPrivacy").value
-      },
-      facebook: {
-        page: $("fbPage").value.trim(),
-        caption: $("fbCaption").value,
-        format: $("fbFormat").value
-      }
-    };
-    try {
-      const targetUrl = ttEndpoint.startsWith("http") ? ttEndpoint : fbEndpoint;
-      const res = await fetch(targetUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      setStatus("تم إرسال القصة وحزمة النشر بنجاح إلى خادم الربط الخاص بـ TikTok وFacebook.");
-    } catch (err) {
-      setStatus("تعذر الاتصال برابط الخادم الوسيط. تأكد من الرابط أو استخدم الرفع المباشر عبر أزرار الفتح.");
-    }
-    return;
-  }
-
-  const bundle = `=== TIKTOK ===
-${$("ttCaption").value}
-
-=== FACEBOOK ===
-${$("fbCaption").value}`;
-  try { await navigator.clipboard.writeText(bundle); } catch (e) {}
-  setStatus("تم نسخ أوصاف TikTok وFacebook معاً! استخدم أزرار «فتح استوديو رفع TikTok» و«فتح Facebook Reels» لرفع الفيديو المصدّر مباشرة.");
-};
-
-$("export").onclick = async () => {
-  const text = $("story").value.trim();
-  const title = $("title").value.trim() || "StoryMaster AI";
-  if (!text) return setStatus("أنشئ قصة أولاً قبل التصدير.");
-  if (!window.MediaRecorder || !HTMLCanvasElement.prototype.captureStream) {
-    return setStatus("تصدير الفيديو غير مدعوم في هذا المتصفح. جرّب Chrome أو Edge الحديث.");
-  }
-
-  const isSquare = $("aspect").value === "1:1";
-  const canvas = document.createElement("canvas");
-  canvas.width = isSquare ? 1080 : 720;
-  canvas.height = isSquare ? 1080 : 1280;
-  const ctx = canvas.getContext("2d");
-
-  const chunks = text.match(/[^.!؟
-]+[.!؟]?/g)?.map(x => x.trim()).filter(Boolean) || [text];
-  const stream = canvas.captureStream(24);
-
-  let recorder;
-  const mimeCandidates = ["video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm", "video/mp4"];
-  const supportedMime = mimeCandidates.find(m => typeof MediaRecorder.isTypeSupported === "function" && MediaRecorder.isTypeSupported(m));
-
-  try {
-    recorder = supportedMime
-      ? new MediaRecorder(stream, { mimeType: supportedMime, videoBitsPerSecond: 2600000 })
-      : new MediaRecorder(stream);
-  } catch (e) {
-    return setStatus("تعذر بدء تصدير الفيديو على هذا الجهاز.");
-  }
-
-  const data = [];
-  recorder.ondataavailable = e => { if (e.data && e.data.size) data.push(e.data); };
-  recorder.onstop = () => {
-    const outType = (supportedMime && supportedMime.includes("mp4")) ? "video/mp4" : "video/webm";
-    const ext = outType.includes("mp4") ? "mp4" : "webm";
-    lastExportedBlob = new Blob(data, { type: outType });
-    const url = URL.createObjectURL(lastExportedBlob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = isSquare ? `storymaster-facebook.${ext}` : `storymaster-tiktok-reels.${ext}`;
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 5000);
-    stream.getTracks().forEach(t => t.stop());
-    $("bar").style.width = "100%";
-    $("chkVideo").textContent = "✅ تم تصدير ملف الفيديو بنجاح";
-    setStatus("اكتمل تصدير الفيديو! يمكنك الآن رفعه مباشرة على TikTok وFacebook Reels.");
-  };
-
-  const duration = Math.max(3, Math.min(6, Math.ceil(36 / chunks.length)));
-  const theme = $("theme").value;
-
-  function wrapText(c, t, x, y, maxWidth, lineHeight, maxLines) {
-    const words = t.split(/\s+/);
-    let line = "", lines = [];
-    for (const w of words) {
-      const test = line ? line + " " + w : w;
-      if (c.measureText(test).width > maxWidth && line) {
-        lines.push(line);
-        line = w;
-      } else {
-        line = test;
-      }
-    }
-    if (line) lines.push(line);
-    lines = lines.slice(0, maxLines);
-    const start = y - (lines.length - 1) * lineHeight / 2;
-    lines.forEach((l, j) => c.fillText(l, x, start + j * lineHeight));
-  }
-
-  function draw(i, frame) {
-    const W = canvas.width, H = canvas.height;
-    const g = ctx.createLinearGradient(0, 0, W, H);
-    if (theme === "gold") {
-      g.addColorStop(0, "#1e293b");
-      g.addColorStop(0.55, "#0f172a");
-      g.addColorStop(1, "#78350f");
-    } else if (theme === "crimson") {
-      g.addColorStop(0, "#3b0d1e");
-      g.addColorStop(0.55, "#090d16");
-      g.addColorStop(1, "#1e1b4b");
-    } else {
-      g.addColorStop(0, `hsl(${255 + i * 12},45%,22%)`);
-      g.addColorStop(0.55, "#101b37");
-      g.addColorStop(1, `hsl(${180 + i * 8},55%,17%)`);
-    }
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, W, H);
-
-    ctx.fillStyle = "rgba(255,59,119,.18)";
-    ctx.beginPath();
-    ctx.arc(90 + Math.sin(frame / 18) * 35, 150, 190, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = "rgba(62,224,216,.14)";
-    ctx.beginPath();
-    ctx.arc(W - 80, H - 180 + Math.cos(frame / 20) * 25, 220, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.textAlign = "center";
-    ctx.direction = "rtl";
-    ctx.fillStyle = "#a9fff5";
-    ctx.font = "bold 24px Arial";
-    ctx.fillText("STORYMASTER ORIGINAL", W / 2, isSquare ? 110 : 145);
-
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 46px Arial";
-    wrapText(ctx, title, W / 2, isSquare ? 260 : 330, W - 130, 64, 2);
-
-    ctx.fillStyle = "#f0f3ff";
-    ctx.font = "34px Arial";
-    wrapText(ctx, chunks[i] || "", W / 2, H * 0.52, W - 130, 56, 6);
-
-    ctx.fillStyle = "#cbd5e1";
-    ctx.font = "22px Arial";
-    ctx.fillText("تابع الحكاية حتى النهاية ✦", W / 2, H - 115);
-
-    const barW = W - 160;
-    ctx.fillStyle = "#ffffff33";
-    drawRoundedRect(ctx, 80, H - 75, barW, 8, 5);
-    ctx.fillStyle = "#3ee0d8";
-    drawRoundedRect(ctx, 80, H - 75, barW * ((i + 1) / chunks.length), 8, 5);
-  }
-
-  let frame = 0, index = 0;
-  draw(0, 0);
-  recorder.start();
-
-  const tick = () => {
-    if (index >= chunks.length) {
-      recorder.stop();
-      return;
-    }
-    draw(index, frame);
-    frame++;
-    $("bar").style.width = Math.min(99, ((index + 1) / chunks.length) * 100) + "%";
-    if (frame >= duration * 24) {
-      frame = 0;
-      index++;
-    }
-    requestAnimationFrame(tick);
-  };
-
-  setStatus("جاري تصدير الفيديو... اترك الصفحة مفتوحة حتى يكتمل التحميل.");
-  requestAnimationFrame(tick);
-};
-
-loadSocialState();
-refresh();
-buildSocialCopy();
-</script>
-</body>
-</html>
+const $=id=>document.getElementById(id);let scenes=[];let audioUrl=null;let audioBytes=null;let lastVideoBlob=null;
+const api=()=> $('apiBase').value.trim().replace(/\/+$/,'');
+function status(t){$('status').textContent=t}
+async function call(path,body){if(!api())throw Error('أدخل رابط Backend أولاً.');const r=await fetch(api()+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});let j={};try{j=await r.json()}catch{}if(!r.ok)throw Error(j.error||('HTTP '+r.status));return j}
+function updatePreview(){$('previewTitle').textContent=$('title').value||'عنوان قصتك';$('previewText').textContent=$('story').value.slice(0,220)||'أنشئ القصة لتظهر المعاينة هنا.'}
+$('title').oninput=updatePreview;$('story').oninput=updatePreview;
+$('makeStory').onclick=async()=>{let idea=$('idea').value.trim();if(!idea)return status('اكتب فكرة القصة أولاً.');$('makeStory').disabled=true;status('Gemini يكتب القصة...');try{let x=await call('/api/story',{idea,genre:$('genre').value,length:$('length').value});$('title').value=x.title||'حكاية جديدة';$('story').value=x.story||'';updatePreview();status('تم إنشاء القصة بواسطة Gemini.');}catch(e){status('تعذر إنشاء القصة: '+e.message)}finally{$('makeStory').disabled=false}};
+$('makeScenes').onclick=async()=>{let story=$('story').value.trim();if(!story)return status('أنشئ القصة أولاً.');$('makeScenes').disabled=true;status('Gemini يحلل القصة ويجهز المشاهد...');try{let x=await call('/api/scenes',{title:$('title').value,story});scenes=x.scenes||[];renderScenes();$('makeImages').disabled=!scenes.length;$('sceneState').textContent=scenes.length+' مشاهد';status('تم تجهيز '+scenes.length+' مشاهد للفيديو الواحد.');}catch(e){status('تعذر تحليل المشاهد: '+e.message)}finally{$('makeScenes').disabled=false}};
+function renderScenes(){$('scenes').innerHTML='';scenes.forEach((s,i)=>{let d=document.createElement('div');d.className='scene';let h=document.createElement('b');h.textContent='المشهد '+(i+1)+' — '+(s.title||'');let p=document.createElement('p');p.textContent=s.visual||s.narration||'';d.append(h,p);if(s.image){let im=document.createElement('img');im.src=s.image;im.alt='صورة المشهد '+(i+1);d.append(im)}$('scenes').append(d)})}
+$('makeImages').onclick=async()=>{if(!scenes.length)return; $('makeImages').disabled=true;for(let i=0;i<scenes.length;i++){status('إنشاء صورة المشهد '+(i+1)+' من '+scenes.length+'...');try{let x=await call('/api/image',{prompt:scenes[i].visual||scenes[i].title});scenes[i].image=x.image;renderScenes()}catch(e){status('فشل إنشاء صورة المشهد '+(i+1)+': '+e.message);break}}$('makeImages').disabled=false;if(scenes.every(s=>s.image))status('اكتملت صور المشاهد.');};
+$('makeAudio').onclick=async()=>{let story=$('story').value.trim();if(!story)return status('أنشئ القصة أولاً.');$('makeAudio').disabled=true;status('Gemini ينشئ التعليق الصوتي...');try{let x=await call('/api/tts',{text:story,voice:$('voice').value,style:$('voiceStyle').value});audioBytes=Uint8Array.from(atob(x.audio),c=>c.charCodeAt(0));let blob=new Blob([audioBytes],{type:'audio/wav'});if(audioUrl)URL.revokeObjectURL(audioUrl);audioUrl=URL.createObjectURL(blob);$('audioPlayer').src=audioUrl;$('audioPlayer').style.display='block';$('playAudio').disabled=false;status('تم إنشاء الصوت. يمكنك الاستماع ثم تصدير الفيديو.');}catch(e){status('تعذر إنشاء الصوت: '+e.message)}finally{$('makeAudio').disabled=false}};
+$('playAudio').onclick=()=>$('audioPlayer').play();
+$('testApi').onclick=async()=>{try{let r=await fetch(api()+'/health');if(!r.ok)throw Error('HTTP '+r.status);let j=await r.json();status('الخادم يعمل: '+(j.status||'OK'));}catch(e){status('لم يتم الاتصال بالخادم: '+e.message)}};
+$('clear').onclick=()=>{$('idea').value=$('title').value=$('story').value='';scenes=[];renderScenes();$('makeImages').disabled=true;updatePreview();status('تم مسح الحقول.')};
+$('save').onclick=()=>{localStorage.setItem('smUltimate',JSON.stringify({idea:$('idea').value,title:$('title').value,story:$('story').value,genre:$('genre').value,length:$('length').value}));status('تم حفظ المسودة على هذا الجهاز.')};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('title').value+'\n\n'+$('story').value);status('تم نسخ القصة.')}catch{status('تعذر النسخ التلقائي.')}};
+function wavToBuffer(ctx,bytes){return ctx.decodeAudioData(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength))}
+$('exportVideo').onclick=async()=>{if(!scenes.length)return status('حلّل القصة إلى مشاهد أولاً.');if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)return status('المتصفح لا يدعم تصدير الفيديو. جرّب Chrome.');let ctxAudio=null;try{
+const canvas=document.createElement('canvas');canvas.width=720;canvas.height=1280;const c=canvas.getContext('2d');const stream=canvas.captureStream(24);
+if(audioBytes){ctxAudio=new AudioContext();let buf=await wavToBuffer(ctxAudio,audioBytes);let src=ctxAudio.createBufferSource();src.buffer=buf;let dest=ctxAudio.createMediaStreamDestination();src.connect(dest);dest.stream.getAudioTracks().forEach(t=>stream.addTrack(t));src.start();window._smAudioSrc=src;}
+let mime=['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'].find(x=>MediaRecorder.isTypeSupported(x));let rec=new MediaRecorder(stream,mime?{mimeType:mime}:undefined),chunks=[];rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};rec.onstop=()=>{lastVideoBlob=new Blob(chunks,{type:'video/webm'});let u=URL.createObjectURL(lastVideoBlob);let a=document.createElement('a');a.href=u;a.download='storymaster-video.webm';a.click();setTimeout(()=>URL.revokeObjectURL(u),60000);stream.getTracks().forEach(t=>t.stop());if(ctxAudio)ctxAudio.close();status('اكتمل تصدير الفيديو الواحد بصيغة WebM.');};
+let duration=Number($('sceneSeconds').value)*1000;let i=0;function draw(){let W=canvas.width,H=canvas.height;let g=c.createLinearGradient(0,0,W,H);g.addColorStop(0,'#28204d');g.addColorStop(1,'#092c38');c.fillStyle=g;c.fillRect(0,0,W,H);let s=scenes[i];if(s.image){let im=new Image();im.onload=()=>{c.drawImage(im,0,0,W,H);overlay(s,i)};im.src=s.image;}else overlay(s,i)}
+function overlay(s,i){c.fillStyle='rgba(0,0,0,.48)';c.fillRect(0,0,W,H);c.direction='rtl';c.textAlign='center';c.fillStyle='#9ff9ec';c.font='bold 27px Arial';c.fillText('STORYMASTER ORIGINAL',W/2,130);c.fillStyle='#fff';c.font='bold 43px Arial';wrap(c,$('title').value,W/2,390,580,60,2);c.font='32px Arial';wrap(c,s.narration||s.visual||'',W/2,690,570,52,7);c.fillStyle='#d4def0';c.font='23px Arial';c.fillText('المشهد '+(i+1)+' / '+scenes.length,W/2,H-110)}
+function wrap(c,t,x,y,max,lh,n){let words=(t||'').split(/\s+/),lines=[],line='';for(let w of words){let test=line?line+' '+w:w;if(c.measureText(test).width>max&&line){lines.push(line);line=w}else line=test}if(line)lines.push(line);lines.slice(0,n).forEach((l,k)=>c.fillText(l,x,y+k*lh))}
+rec.start();let timer=setInterval(()=>{i++;if(i>=scenes.length){clearInterval(timer);rec.stop();return}draw()},duration);draw();status('يتم تسجيل الفيديو... اترك الصفحة مفتوحة حتى يكتمل.');}catch(e){status('تعذر تصدير الفيديو: '+e.message)}};
+try{let x=JSON.parse(localStorage.getItem('smUltimate')||'null');if(x){$('idea').value=x.idea||'';$('title').value=x.title||'';$('story').value=x.story||'';$('genre').value=x.genre||$('genre').value;$('length').value=x.length||$('length').value;updatePreview()}}catch{}
+
+function postText(){const base=$('title').value.trim()||'حكاية جديدة';const story=$('story').value.trim();if(!story){status('أنشئ القصة أولاً.');return false}const tags='#قصص #حكايات #قصة #Storytelling';$('tiktokPost').value=base+'\n\n'+story.slice(0,420)+'\n\n'+tags;$('facebookPost').value=base+'\n\n'+story.slice(0,1000)+'\n\nما رأيكم في هذه الحكاية؟ شاركونا آراءكم.\n\n#قصص #حكايات';return true}
+$('preparePosts').onclick=()=>{if(postText())status('تم تجهيز منشوري TikTok وFacebook. راجع النص قبل النشر.')};
+async function copyText(id,label){try{await navigator.clipboard.writeText($(id).value);status('تم نسخ '+label)}catch{status('تعذر النسخ التلقائي. حدّد النص وانسخه يدوياً.')}}
+$('copyTikTok').onclick=()=>copyText('tiktokPost','منشور TikTok');$('copyFacebook').onclick=()=>copyText('facebookPost','منشور Facebook');
+function publishUrl(path){if(!api())throw Error('أدخل رابط Backend أولاً.');return api()+path}
+$('connectTikTok').onclick=()=>{try{location.href=publishUrl('/auth/tiktok')}catch(e){status(e.message)}};
+$('connectFacebook').onclick=()=>{try{location.href=publishUrl('/auth/facebook')}catch(e){status(e.message)}};
+async function refreshConnections(){if(!api())return;try{const r=await fetch(api()+'/api/social/status');const j=await r.json();if(!r.ok)throw Error(j.error||r.status);$('tiktokState').textContent=j.tiktok?.connected?'TikTok مربوط — '+(j.tiktok.username||'الحساب متصل'):'TikTok غير مربوط.';$('publishTikTok').disabled=!j.tiktok?.connected;$('facebookState').textContent=j.facebook?.connected?'Facebook مربوط — '+(j.facebook.pages?.length||0)+' صفحة متاحة':'Facebook غير مربوط.';$('publishFacebook').disabled=!j.facebook?.pages?.length;const p=$('facebookPage');p.innerHTML='';(j.facebook?.pages||[]).forEach(x=>{let o=document.createElement('option');o.value=x.id;o.textContent=x.name;p.append(o)});if(j.tiktok?.privacy_options?.length){const q=$('tiktokPrivacy');q.innerHTML='';j.tiktok.privacy_options.forEach(v=>{let o=document.createElement('option');o.value=v;o.textContent=v;q.append(o)})}if(location.search.includes('social=tiktok'))status('تمت إعادة التوجيه من TikTok. حدّث حالة الربط.');if(location.search.includes('social=facebook'))status('تم ربط Facebook. اختر الصفحة ثم انشر.')}catch(e){$('tiktokState').textContent='تعذر فحص الربط: '+e.message}}
+$('refreshConnections').onclick=refreshConnections;
+function getVideoFile(){const f=$('publishVideoFile').files[0];if(f)return f;if(lastVideoBlob)return new File([lastVideoBlob],'storymaster-video.webm',{type:'video/webm'});throw Error('صدّر الفيديو أولاً أو اختر ملف فيديو من الجهاز.')}
+async function uploadSocial(platform){const isT=platform==='tiktok';const caption=$(isT?'tiktokPost':'facebookPost').value.trim();if(!caption)throw Error('جهّز نص المنشور أولاً.');const file=getVideoFile();if(isT&&file.size>4*1024*1024*1024)throw Error('حجم الفيديو يتجاوز حد TikTok البالغ 4GB.');if(!isT&&!/\.mp4$/i.test(file.name)&&file.type!=='video/mp4')throw Error('لفيسبوك اختر ملف MP4.');const fd=new FormData();fd.append('video',file,file.name);fd.append('caption',caption);if(isT)fd.append('privacy_level',$('tiktokPrivacy').value);else fd.append('page_id',$('facebookPage').value);const btn=$(isT?'publishTikTok':'publishFacebook');btn.disabled=true;status('جارٍ رفع الفيديو إلى '+(isT?'TikTok':'Facebook')+'...');try{const r=await fetch(publishUrl(isT?'/api/social/tiktok/publish':'/api/social/facebook/publish'),{method:'POST',body:fd});const j=await r.json();if(!r.ok)throw Error(j.error||'فشل النشر');status(j.message||'تم إرسال الفيديو. تابع حالة المعالجة من حسابك.');if(j.publish_id)status('تم رفع الفيديو إلى TikTok. رقم العملية: '+j.publish_id+' — الحالة قيد المعالجة.');}finally{btn.disabled=false}}
+$('publishTikTok').onclick=()=>uploadSocial('tiktok').catch(e=>status('TikTok: '+e.message));$('publishFacebook').onclick=()=>uploadSocial('facebook').catch(e=>status('Facebook: '+e.message));
+if(location.search.includes('social=')){history.replaceState({},'',location.pathname);}
+
+</script></body></html>
